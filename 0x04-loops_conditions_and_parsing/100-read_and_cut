@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+# reads the /etc/passwd retuns certain content
+while IFS= read -r line
+do
+	echo "$line" | cut -f 1,3,6 -d ":"
+done < "/etc/passwd"
