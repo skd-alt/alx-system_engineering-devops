@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+# Display contents of /etc/password
+while IFS= read -r line
+do
+	user=$(echo "$line" | cut -f 1 -d ':')
+	pswd=$(echo "$line" | cut -f 2 -d ':')
+	userid=$(echo "$line" | cut -f 3 -d ':')
+	grpid=$(echo "$line" | cut -f 4 -d ':')
+	userinfo=$(echo "$line" | cut -f 5 -d ':')
+	home=$(echo "$line" | cut -f 6 -d ':')
+	command=$(echo "$line" | cut -f 7 -d ':')
+
+	echo -n "The user $user is part of the $grpid gang, "
+	echo -n "lives in $home and rides $command."
+	echo -n " $userid's place is protected by the passcode $pswd, "
+	echo -n "more info about the user here: $userinfo"
+done < "/etc/passwd"
