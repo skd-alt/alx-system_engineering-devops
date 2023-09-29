@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+# Prints process a bsd style x shows no TTY u user format f: heiracy
+ps -auxf
