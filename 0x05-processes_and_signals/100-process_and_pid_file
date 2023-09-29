@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # Process and PID file
-echo $$ > /var/run/myscript.pid
-trap 'echo "I hate the kill command"; rm -rf /var/run/holbertonscript.pid; exit' SIGTERM
+echo $? > /var/run/myscript.pid
+trap 'echo "I hate the kill command"; rm -rf /var/run/holbertonscript.pid; pkill -f 100-process_and_pid_file' SIGTERM
 trap 'echo "Y U no love me?!"' SIGINT
 trap 'rm -rf /var/run/holbertonscript.pid; exit' SIGQUIT
 while true
