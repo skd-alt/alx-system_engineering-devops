@@ -3,7 +3,7 @@
 
 sudo apt-get update
 sudo apt-get -y install --no-install-recommends software-properties-common
-sudo add-apt-repository ppa:vbernat/haproxy-2.8
+sudo add-apt-repository ppa:vbernat/haproxy-2.8 -y
 sudo apt-get -y install haproxy=2.8.\*
 sudo sed -i -e '$aENABLED=1\n' /etc/default/haproxy
 sudo echo -e "\nfrontend httpip\n\tbind 0:80\n\tmode http\n\tdefault_backend mywebback\n\nbackend mywebback\n\ttimeout connect 3000\n\ttimeout server  30000\n\tbalance roundrobin\n\tserver 342191-web-01 52.91.121.78 check port 80\n\tserver 342191-web-02 18.234.168.42 check port 80" /etc/haproxy/haproxy.cfg
