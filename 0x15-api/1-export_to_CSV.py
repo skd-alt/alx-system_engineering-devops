@@ -12,15 +12,18 @@ if __name__ == "__main__":
 
     for t in tasks:
         with open("{}.csv".format(sys.argv[1]), mode='a') as f:
-            writer = csv.writer(f,
+            writer = csv.writer(
+                    f,
                     delimiter=',',
                     quotechar='"',
                     quoting=csv.QUOTE_ALL
             )
 
             writer.writerow(
-                    [str(sys.argv[1]),
-                    str(user.get('username')),
-                    str(t.get("completed")),
-                    str(t.get("title"))]
+                    [
+                        str(sys.argv[1]),
+                        str(user.get('username')),
+                        str(t.get("completed")),
+                        str(t.get("title"))
+                        ]
                     )
