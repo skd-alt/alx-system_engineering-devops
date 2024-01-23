@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-""" A JSONPlacholder to get employee data """
+""" A JSON placeholder to get employee data """
 import json
 import requests
 import sys
@@ -7,27 +7,24 @@ import sys
 
 if __name__ == "__main__":
     url = 'https://jsonplaceholder.typicode.com/'
-
-    users = '{}users/'.format(url)
-    res = requests.get(users)
+    user = '{}users'.format(url)
+    res = requests.get(user)
     json_o = res.json()
-    final_task = {}
-    for u in json_o:
-        name = u.get('username')
-
-        todos = '{}todos?userId={}'.format(url, u.get('id'))
-        res2 = requests.get(todos)
-        tasks = res2.json()
-        user_task = []
+    d_task = {}
+    for user in json_o:
+        name = user.get('username')
+        userid = user.get('id')
+        todos = '{}todos?userId={}'.format(url, userid)
+        res = requests.get(todos)
+        tasks = res.json()
+        l_task = []
         for task in tasks:
-            dict_task = {
-                    "username": name,
-                    "task": task.get('title'),
-                    "completed": task.get('completed')
-                    }
-            user_task.append(dict_task)
+            dict_task = {"username": name,
+                         "task": task.get('title'),
+                         "completed": task.get('completed')}
+            l_task.append(dict_task)
 
-        final_task[str(u.get('id'))] = user_task
+        d_task[str(userid)] = l_task
     filename = 'todo_all_employees.json'
-    with open(filename, mode='a') as f:
-        json.dump(final_task, f)
+    with open(filename, mode='w') as f:
+        json.dump(d_task, f)
