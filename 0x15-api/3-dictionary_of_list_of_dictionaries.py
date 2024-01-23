@@ -11,6 +11,7 @@ if __name__ == "__main__":
     users = '{}users/'.format(url)
     res = requests.get(users)
     json_o = res.json()
+    final_task = {}
     for u in json_o:
         name = u.get('username')
 
@@ -24,7 +25,7 @@ if __name__ == "__main__":
                          "username": name}
             user_task.append(dict_task)
 
-        final_task = {str(u.get('id')): user_task}
-        filename = 'todo_all_employees.json'
-        with open(filename, mode='a') as f:
-            json.dump(final_task, f)
+        final_task[str(u.get('id'))] = user_task
+    filename = 'todo_all_employees.json'
+    with open(filename, mode='a') as f:
+        json.dump(final_task, f)
