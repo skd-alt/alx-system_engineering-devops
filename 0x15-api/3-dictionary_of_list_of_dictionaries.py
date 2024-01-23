@@ -20,9 +20,11 @@ if __name__ == "__main__":
         tasks = res2.json()
         user_task = []
         for task in tasks:
-            dict_task = {"task": task.get('title'),
-                         "completed": task.get('completed'),
-                         "username": name}
+            dict_task = {
+                    "username": name,
+                    "task": task.get('title'),
+                    "completed": task.get('completed')
+                    }
             user_task.append(dict_task)
 
         final_task[str(u.get('id'))] = user_task
