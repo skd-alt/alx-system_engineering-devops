@@ -9,7 +9,7 @@ from requests import get
 def number_of_subscribers(subreddit):
     """
     function that queries the Reddit API and returns the number of subscribers
-    for a given subreddit.
+    (not active users, total subscribers) for a given subreddit.
     """
 
     if subreddit is None or not isinstance(subreddit, str):
@@ -19,7 +19,7 @@ def number_of_subscribers(subreddit):
     url = 'https://www.reddit.com/r/{}/about.json'.format(subreddit)
     response = get(url, headers=user_agent)
     results = response.json()
-    
+
     try:
         return results.get('data').get('subscribers')
 
