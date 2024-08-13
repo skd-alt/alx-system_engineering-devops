@@ -1,3 +1,4 @@
+#!/usr/bin/python3
 """Top ten subreddits """
 
 from requests import get
