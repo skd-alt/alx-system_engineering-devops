@@ -1,16 +1,20 @@
 #!/usr/bin/python3
+"""returns a list containing the titles of all hot articles for a given
+subreddit. If no results are found for the given subreddit,
+the function should return None.
 """
-recursive listing function
-"""
-
 import requests
+after = ""
+count = 0
 
 
-def recurse(subreddit, hot_list=[], after="", count=0):
+def recurse(subreddit, hot_list=[]):
     """returns a list containing the titles of all hot articles for a given
     subreddit. If no results are found for the given subreddit,
     the function should return None.
     """
+    global after
+    global count
     url = "https://www.reddit.com/r/{}/hot/.json".format(subreddit)
     headers = {
         "User-Agent": "Mozilla/5.0 (X11; Linux x86_64; rv:108.0) \
@@ -33,5 +37,5 @@ def recurse(subreddit, hot_list=[], after="", count=0):
         hot_list.append(c.get("data").get("title"))
 
     if after is not None:
-        return recurse(subreddit, hot_list, after, count)
+        return recurse(subreddit, hot_list)
     return hot_list
